@@ -1,0 +1,85 @@
+\documentclass{article}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\newtheorem{lemma}{Lemma}
+\linespread{1.5}
+\begin{document}
+\title{Properties of measurable sets}
+\maketitle
+Define: If $E$ is any subset of $\mathbb{R}^{d}$, the outer measure of $E$ is $m_{*}(E)=inf\{\sum_{j=1}^{\infty}\left|Q_{j}\right|:E\subset\bigcup_{j=1}^{\infty}Q_{j},Q_{j}\in Q\}$
+
+
+Define: A subset $E$ of $\mathbb{R}^{d}$ is Lebesgue measurable if for any $\varepsilon>0$, there exists an open set $O$ with $E \subset O$ and $m_{*}(O\backslash E)<\varepsilon$ \\
+If $E$ is measurable, we define its measure $m(E)$ by $m(E)=m_{*}(E)$\\
+~\\
+Property 1: Every open set in $\mathbb{R}^{d}$ is measurable.
+\begin{proof}
+	~\\
+	let $E\subset E$
+\end{proof}
+~\\
+Property 2: If $m_{*}(E)=0$, then $E$ is measurable. 
+\begin{proof}
+	~\\
+	$m_{*}(E)=0 \Rightarrow inf\{m_{*}(O):E\subset O\}=0 \Rightarrow \forall \varepsilon>0,\ \exists O\ such\ that\ E\subset O,\  m_{*}(O)<\varepsilon$\\
+	Then $m_{*}(O\backslash E)\leq m_{*}(O)<\varepsilon$
+\end{proof}
+~\\
+Property 3: Let $\{E_{j}\}_{j=1}^{\infty}$ be a family of measurable sets, then $\bigcup_{j=1}^{\infty}E_{j}$ is measurable. 
+\begin{proof}
+	~\\
+	$\forall j, \exists O_{j}, m_{*}(O_{j}\backslash E_{j})<\frac{\varepsilon}{2^{-j}}$\\
+	$\bigcup_{j=1}^{\infty}E_{j}\subset \bigcup_{j=1}^{\infty}O_{j}$\\
+	We now prove $\bigcup_{j=1}^{\infty}O_{j}\backslash \bigcup_{j=1}^{\infty}E_{j}\subset \bigcup_{j=1}^{\infty}(O_{j}\backslash E_{j})$\\
+	Suppose $\forall x\in \bigcup_{j=1}^{\infty}O_{j}\backslash \bigcup_{j=1}^{\infty}E_{j}$\\
+	That's to say, $x\in \bigcup_{j=1}^{\infty}O_{j}$ and $x\in \bigcap_{j=1}^{\infty}E_{j}^{c}$\\
+	Thus, $x_{0}\in O_{j_{0}}$ and $\forall j, x_{0}\in E_{j}^{c}$\\
+	Thus, $x_{0}\in O_{j_{0}}\bigcap E_{j_{0}}^{c}\Rightarrow x\in \bigcup_{j=1}^{\infty}(O_{j}\backslash E_{j})$\\
+	$m_{*}(\bigcup_{j=1}^{\infty}O_{j}\backslash \bigcup_{j=1}^{\infty}E_{j})\leq m_{*}(\bigcup_{j=1}^{\infty}(O_{j}\backslash E_{j}))\leq \sum_{j=1}^{\infty}m_{*}(O_{j}\backslash E_{j})<\varepsilon$
+\end{proof}
+~\\
+Property 4: Closed sets are measurable. 
+\begin{proof}
+	\begin{lemma}
+		If $F$ is closed, $K$ is compact, and $K\bigcap F=\varnothing$, then $d(K, F)>0$
+		\begin{proof}
+			Suppose $\exists x\in K, d(x,F)=0$\\
+			Then $inf_{y\in F}\{\left|x-y\right|\}=0$\\
+			That's to say, $\exists y_{n}\in F,\ s.t.\ y_{n}\rightarrow x$\\
+			Thus, $x\in F$
+		\end{proof}
+	\end{lemma}
+	~\\
+	(1) $F$ is compact: \\
+	Choose $O$, $F\subset O$. 
+	Let $m_{*}(O)\leq m_{*}(F)+\varepsilon/2$\\
+	Then $O\backslash F=O\bigcap F^{c}$, which is open\\
+	Thus $O\bigcap F^{c}=\bigcup_{j=1}^{\infty}Q_{j}$\\
+	For $N\in \mathbb{N}^{+}, K=\bigcup_{j=1}^{N}Q_{j}$ is compact and $d(K, F)>0$\\
+	$K \bigcup F\subset O \Rightarrow m_{*}(O)\geq m_{*}(K)+m_{*}(F)=m_{*}(F)+\sum_{j=1}^{N}m_{*}(Q_{j})$\\
+	$\sum_{j=1}^{N}m_{*}(Q_{j})\leq m_{*}(O)-m_{*}(F)\leq \varepsilon/2$\\
+	let $N\rightarrow \infty$, then $m_{*}(O\backslash F)=m_{*}(\bigcup_{j=1}^{\infty}Q_{j})\leq \sum_{j=1}^{\infty}m_{*}(Q_{j})\leq \varepsilon/2<\varepsilon$\\
+	(2) $F$ is closed: \\
+	then for every closed ball $B(0, N):\{x\in \mathbb{R}^{d}: \left|x\right|\leq N\}$\\
+	$\bigcup_{N=1}^{\infty}B(0,N)=\mathbb{R}^{d}$\\
+	$F\bigcap \mathbb{R}^{d}=F\bigcap \bigcup_{N=1}^{\infty}B(0,N)=\bigcup_{N=1}^{\infty}(F\bigcap B(0,N))$\\
+	Note that $F\bigcap B(0,N)$ is compact, and use Property 3, then $F$ is measurable. 
+\end{proof}
+~\\
+Property 5: Let $E$ be measurable, then $E^{c}$ is measurable. 
+\begin{proof}
+	~\\
+	$\forall n\in \mathbb{N}$, choose $O_{n}$ such that $E\subset O_{n}$ and $m_{*}(O_{n}\backslash E)\leq \frac{1}{n}$\\
+	Note that $O_{n}^{c}$ is closed, let $S=\bigcup_{n=1}^{\infty}O_{n}^{c}$\\
+	$E^{c}\backslash S\subset O\backslash E\Rightarrow m_{*}(E^{c}\backslash S)\leq m_{*}(O\backslash E)\leq \frac{1}{n},\ \forall n$\\
+	Note that $E^{c}=(E^{c}\backslash S)\bigcup S$, where $E^{c}\backslash S$ and $S$ are both measurable. \\
+	Thus $E^{c}$ is measurable. 
+\end{proof}
+~\\
+Property 6: Let $\{E_{j}\}_{j=1}^{\infty}$ be a family of measurable sets, then $\bigcap_{j=1}^{\infty}E_{j}$ is measurable. 
+	\begin{proof}
+		~\\
+		Note that $\bigcap_{j=1}^{\infty}E_{j}=(\bigcup_{j=1}^{\infty}E_{j}^{c})^{c}$
+	\end{proof}
+\end{document}
